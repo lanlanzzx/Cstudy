@@ -1,0 +1,84 @@
+/**
+ * struct ListNode {
+ *  int val;
+ *  struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param head ListNode类
+ * @param m int整型
+ * @param n int整型
+ * @return ListNode类
+ */
+struct ListNode* reverseBetween(struct ListNode* head, int m, int n ) {
+    // write code here
+    if(n>m){
+    struct ListNode* pre = NULL;
+    struct ListNode* nex = NULL;
+    struct ListNode* cur = head;
+    int i = 1;
+    int count=1;
+    
+    while (i < n) {
+        if (i == m - 1) {
+            pre = cur;
+        }
+        cur = cur->next;
+        i++;
+        if (i == n) {
+            nex = cur->next;
+        }
+    }
+    if(pre){
+    struct ListNode* cur1 = pre->next; //指向旧链表的第一个需要反转的节点
+    struct ListNode* pri = NULL; //指向旧链表的第二个需要反转的节点
+    struct ListNode* pri1 = nex; //新链表的最后一个节点
+
+    while(count<=n-m+1) {
+        pri = cur1->next; //保存下一个节点
+        cur1->next = pri1; //未反转节点指向新链表的最后一个节点
+        pri1 = cur1; //新链表的最后一个节点 变成当下节点
+        cur1= pri; //旧链表的下一个节点
+        count++;
+        // pri1=cur;
+        // cur=pri;
+        // cur->next=pri1;
+        //pHead=pHead->next;
+    }
+    
+    pre->next=pri1;
+   
+
+    return head;}
+    else{
+    struct ListNode* cur1 = head; //指向旧链表的第一个需要反转的节点
+    struct ListNode* pri = NULL; //指向旧链表的第二个需要反转的节点
+    struct ListNode* pri1 = nex; //新链表的最后一个节点
+
+    while(count<=n-m+1) {
+        pri = cur1->next; //保存下一个节点
+        cur1->next = pri1; //未反转节点指向新链表的最后一个节点
+        pri1 = cur1; //新链表的最后一个节点 变成当下节点
+        cur1= pri; //旧链表的下一个节点
+        count++;
+        // pri1=cur;
+        // cur=pri;
+        // cur->next=pri1;
+        //pHead=pHead->next;
+    }
+    
+   
+
+    return pri1;
+    }
+    }
+      
+
+    
+
+    return head;
+
+    }
