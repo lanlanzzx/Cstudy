@@ -1,0 +1,42 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param pHead1 ListNode类 
+ * @param pHead2 ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* Merge(struct ListNode* pHead1, struct ListNode* pHead2 ) {
+    // write code here
+    struct ListNode *merge=(struct ListNode*)malloc(sizeof(struct ListNode));
+    merge->val=0;
+    merge->next=NULL;
+    struct ListNode* current=merge;
+    // int d=pHead1->val;
+    // printf("%d",pHead1->val);
+    while(pHead1 && pHead2){
+        if((pHead1->val)<(pHead2->val)){
+            current->next=pHead1;
+            current=pHead1;
+            pHead1=pHead1->next;
+
+        }
+        else{
+            current->next=pHead2;
+            current=pHead2;
+            pHead2=pHead2->next;
+        }
+    }
+    if(pHead1){
+        current->next=pHead1;
+    }
+    else{
+        current->next=pHead2;
+    }
+    return merge->next;
+}
