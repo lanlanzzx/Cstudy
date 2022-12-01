@@ -1,0 +1,36 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param pHead ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* ReverseList(struct ListNode* pHead ) {
+    // write code here
+    // struct ListNode *pri=(struct ListNode *)malloc(sizeof(struct ListNode));
+    // pri->val=-1;
+    // pri->next=NULL;
+    // struct ListNode *pri1=(struct ListNode *)malloc(sizeof(struct ListNode));
+    // pri1->val=-1;
+    // pri1->next=NULL;
+    struct ListNode* cur=pHead;//指向旧链表的第一个需要反转的节点
+    struct ListNode *pri=NULL;//指向旧链表的第二个需要反转的节点
+    struct ListNode *pri1=NULL;//新链表的最后一个节点
+    while(cur){
+        pri=cur->next;//保存下一个节点
+        cur->next=pri1;//未反转节点指向新链表的最后一个节点
+        pri1=cur;//新链表的最后一个节点 变成当下节点
+        cur=pri;//旧链表的下一个节点
+        // pri1=cur;
+        // cur=pri;
+        // cur->next=pri1;
+        //pHead=pHead->next;
+        
+    }
+    return pri1;
+}
