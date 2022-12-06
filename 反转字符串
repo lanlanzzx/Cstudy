@@ -1,0 +1,20 @@
+
+/**
+ * 反转字符串
+ * @param str string字符串 
+ * @return string字符串
+ */
+char* solve(char* str ) {
+    // write code here
+    int i=0;
+    int j=strlen(str)-1;
+    char temp=0;
+    while(i<=j){
+        temp=str[i];
+        str[i]=str[j];
+        str[j]=temp;
+        j--;
+        i++;
+    }
+    return str;
+}
