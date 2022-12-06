@@ -1,0 +1,23 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param cost int整型一维数组 
+ * @param costLen int cost数组长度
+ * @return int整型
+ */
+ //dp数组表示爬到第i个楼梯需要的花费
+int minCostClimbingStairs(int* cost, int costLen ) {
+    // write code here
+    int dp[100000]={0};
+    dp[0]=0;
+    dp[1]=0;
+    int i=0;
+    for(i=2;i<=costLen;i++){
+        dp[i]=((dp[i-2]+cost[i-2])<(dp[i-1]+cost[i-1]))?(dp[i-2]+cost[i-2]):(dp[i-1]+cost[i-1]);
+        //printf("%d\n",dp[i]);
+
+    }
+    //printf("%d",costLen);
+    
+    return dp[costLen];}
