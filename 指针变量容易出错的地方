@@ -1,0 +1,4 @@
+const int * const p=&x；指针p以及p指向的int类型数据都被const修饰，则*p和p都为const属性 无法被修改。则*p=1这种写法是错误的。
+const int &q=x；是指向常量的引用，使用时必须初始化，而且初始化后，引用值不可以改变，引用的常量也不能改变
+int const *next=&x;这个式子中const修饰的是(*next),const修饰的整数，即next指向的内容不可以改变  指针变量next并没有被const修饰 所以next变量是可以改变的
+const int*j=&x，其中const int* 和 int const*一样 其中const修饰的整数。
