@@ -127,3 +127,22 @@ calloc的函数原型：void* calloc (size_t num, size_t size);申请num * size�
 //scanf 和 printf 是 C 语言提供的输入输出函数 , 所以 B 错误。由 printf 输出的数据都隐含右对齐 , 所以 A 错误。
 Printf 输出数据所占的宽度由系统决定 , 所以 D 错误。//
 
+//链接：https://www.nowcoder.com/questionTerminal/35de66cf75ed42fca57d3818e7c0fbc5
+来源：牛客网
+
+从文件编码的方式来看，文件可分为ASCII码文件（文本文件）和二进制文件两种。ASCII码文件可在屏幕上按字符显示的，
+例如源程序文件就是ASCII码文件，由于按字符显示，可以识别；二进制文件是按二进制的编码方式来存放文件的，二进制文件虽然也可以在屏幕上显示，显示为乱码。//
+
+
+//在32位平台上
+struct {
+    unsigned char a;
+    int b;
+    short c
+} s;
+请问s的起始地址下面说法正确的是（）
+单字节对齐
+双子节对齐
+四字节对齐
+说法都不对
+结构体内int 占用内存最大，为4字节，故采用四字节对齐，//
