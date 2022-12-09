@@ -110,4 +110,16 @@ C程序的基本组成单位是 函数//
 
 //
 malloc的函数原型：void* malloc (size_t size);申请1*size大小的空间 
-calloc的函数原型：void* calloc (size_t num, size_t size);申请num * size大小的空间 即1块 和 n块
+calloc的函数原型：void* calloc (size_t num, size_t size);申请num * size大小的空间 即1块 和 n块//
+
+
+
+//#include <stdio.h>
+    main(){
+    int a = 2, c = 5;
+    printf("a=%%d,b=%%d\n", a, c);
+}
+则程序的输出结果是（）a=%d,b=%d//
+
+
+//main函数可以调用自己，函数调用本身叫做函数的递归。和普通的函数递归调用一样，只要设置 结束条件即可。关于main函数的递归调用实例//
