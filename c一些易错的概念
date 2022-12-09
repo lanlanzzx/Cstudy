@@ -123,3 +123,7 @@ calloc的函数原型：void* calloc (size_t num, size_t size);申请num * size�
 
 
 //main函数可以调用自己，函数调用本身叫做函数的递归。和普通的函数递归调用一样，只要设置 结束条件即可。关于main函数的递归调用实例//
+
+//scanf 和 printf 是 C 语言提供的输入输出函数 , 所以 B 错误。由 printf 输出的数据都隐含右对齐 , 所以 A 错误。
+Printf 输出数据所占的宽度由系统决定 , 所以 D 错误。//
+
