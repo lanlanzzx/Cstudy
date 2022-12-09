@@ -106,3 +106,8 @@ C程序的基本组成单位是 函数//
 正确
 错误
 选A：正确，输出项只要不是个变量就可以正常地进行输出，数组名不是变量，数组中的 i [n]才算变量//
+
+
+//
+malloc的函数原型：void* malloc (size_t size);申请1*size大小的空间 
+calloc的函数原型：void* calloc (size_t num, size_t size);申请num * size大小的空间 即1块 和 n块
