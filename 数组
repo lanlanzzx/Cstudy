@@ -1,0 +1,401 @@
+////
+////  main.c
+////  test1210
+////实现一个数组的功能
+////  Created by 兰兰王 on 2022/12/6.
+////
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//struct array{
+//    int len;
+//    int* base;
+//    int cnt;
+//};
+//void init_array(struct array *,int);
+//void append_array(struct array *,int);//从末尾插入元素
+//void insert_array(struct array *,int,int);
+//void delete_array(struct array *,int,int*);
+//int is_empty(struct array *);//c语言中没有bool类型的变量
+//int is_full(struct array *);
+//void sort_array(struct array *);
+//int find_array(struct array *,int);
+//void reverse_array(struct array *);
+//void show_array(struct array *);
+//int main(int argc, const char * argv[]) {
+//    struct array wll;
+//    int val;
+//    int index;
+//    init_array(&wll,6);
+//    append_array(&wll, 35);
+//    append_array(&wll, 23);
+//    append_array(&wll, 93);
+//    show_array(&wll);
+//    insert_array(&wll, 1, 100);
+//    insert_array(&wll, 1, 101);
+//    insert_array(&wll, 3, 77);
+//    append_array(&wll, 900);
+//    show_array(&wll);
+//    delete_array(&wll, 1, &val);
+//    show_array(&wll);
+//    printf("%d\n",val);
+//    reverse_array(&wll);
+//    show_array(&wll);
+//    sort_array(&wll);
+//    show_array(&wll);
+//    index=find_array(&wll, 93);
+//    printf("%d\n",index);
+//
+//
+//    return 0;
+//}
+//void init_array(struct array* p,int length){
+//    p->len=length;
+//    p->base=(struct array *)malloc(sizeof(int)*(p->len));
+//    p->cnt=0;
+//    if(NULL==p->base){
+//        printf("开辟空间失败\n");
+//    }
+//    else{
+//        printf("开辟空间成功\n");
+//    }
+//    return;
+//}
+//int is_empty(struct array *p){
+//    if(0==p->cnt)
+//        return 1;
+//    return 0;
+//}
+//int is_full(struct array *p){
+//    if(p->len==p->cnt)
+//        return 1;
+//    return 0;
+//}
+//void append_array(struct array *p,int val){
+//    if(is_full(p)==1){
+//        printf("数组已经满了 无法追加元素\n");
+//    }
+//    else{
+//        p->base[p->cnt]=val;
+//        (p->cnt)++;
+//    }
+//    return;
+//}
+//void insert_array(struct array *p,int index,int val){
+//    int i;
+//    if(is_full(p)==1){
+//        printf("数组已经满了 无法插入元素\n");
+//    }
+//    else{
+//        if(index<0 || index>(p->cnt)){
+//            printf("插入位置不合法\n");
+//        }
+//        else{
+//            for(i=(p->cnt)-1;i>=index;i--){
+//                p->base[i+1]=p->base[i];
+//            }
+//            p->base[index]=val;
+//            (p->cnt)++;
+//        }
+//    }
+//    return;
+//}
+//void delete_array(struct array *p,int index,int* val){
+//    int i;
+//    if(is_empty(p)==1){
+//        printf("数组是空的，无法删除元素\n");
+//    }
+//    else{
+//        if(index<0 || index>(p->cnt)-1){
+//            printf("删除位置不合法\n");
+//        }
+//        else{
+//            *val=p->base[index];
+//            for(i=index+1;i<p->cnt;i++){
+//                p->base[i-1]=p->base[i];
+//            }
+//            (p->cnt)--;
+//        }
+//    }
+//    return;
+//}
+////冒泡排序
+//void sort_array(struct array *p){
+//    int i;
+//    int j;
+//    int temp;
+//    int flag;
+//    if(is_empty(p)==1){
+//        printf("数组是空de\n");
+//    }
+//    else{
+//        for(i=0;i<p->cnt;i++){
+//            flag=0;
+//            for(j=i+1;j<p->cnt;j++){
+//                if(p->base[i]>p->base[j]){
+//                    temp=p->base[i];
+//                    p->base[i]=p->base[j];
+//                    p->base[j]=temp;
+//                    flag=1;
+//                }
+//            }
+//            if(0==flag)
+//                break;
+//        }
+//    }
+//    return;
+//}
+//int find_array(struct array *p,int val){
+//    int left=0;
+//    int right=p->cnt-1;
+//    int mid;
+//
+//    if(is_empty(p)==1){
+//        printf("数组是空de\n");
+//    }
+//    else{
+//        sort_array(p);
+//        while(left<=right){
+//            mid=(left+right)/2;
+//            if(p->base[mid]==val){
+//                return mid;
+//            }
+//            else if(p->base[mid]>val){
+//                right=mid-1;
+//            }
+//            else{
+//                left=mid+1;
+//            }
+//        }
+//
+//    }
+//    return -1;
+//}
+//void reverse_array(struct array *p){
+//    int i=0;
+//    int j=p->cnt-1;
+//    int temp;
+//    while(i<j){
+//        temp=p->base[i];
+//        p->base[i]=p->base[j];
+//        p->base[j]=temp;
+//        i++;
+//        j--;
+//    }
+//    return;
+//}
+//void show_array(struct array *p){
+//    int i=0;
+//    if(is_empty(p)==1){
+//        printf("数组是空de\n");
+//    }
+//    else{
+//        for(i=0;i<p->cnt;i++){
+//            printf("%d ",p->base[i]);
+//        }
+//        printf("\n");
+//    }
+//    return;
+//
+//}
+//
+//  main.c
+//  test1210
+//实现一个数组的功能
+//  Created by 兰兰王 on 2022/12/6.
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct array{
+    int len;
+    int* base;
+    int cnt;
+}arr;
+void init_array(struct array *,int);
+void append_array(struct array *,int);//从末尾插入元素
+void insert_array(struct array *,int,int);
+void delete_array(struct array *,int,int*);
+int is_empty(struct array *);//c语言中没有bool类型的变量
+int is_full(struct array *);
+void sort_array(struct array *);
+int find_array(struct array *,int);
+void reverse_array(struct array *);
+void show_array(struct array *);
+int main(int argc, const char * argv[]) {
+    arr wll;
+    int val;
+    int index;
+    init_array(&wll,6);
+    append_array(&wll, 35);
+    append_array(&wll, 23);
+    append_array(&wll, 93);
+    show_array(&wll);
+    insert_array(&wll, 1, 100);
+    insert_array(&wll, 1, 101);
+    insert_array(&wll, 3, 77);
+    append_array(&wll, 900);
+    show_array(&wll);
+    delete_array(&wll, 1, &val);
+    show_array(&wll);
+    printf("%d\n",val);
+    reverse_array(&wll);
+    show_array(&wll);
+    sort_array(&wll);
+    show_array(&wll);
+    index=find_array(&wll, 93);
+    printf("%d\n",index);
+    
+    
+    return 0;
+}
+void init_array(struct array* p,int length){
+    p->len=length;
+    p->base=(struct array *)malloc(sizeof(int)*(p->len));
+    p->cnt=0;
+    if(NULL==p->base){
+        printf("开辟空间失败\n");
+    }
+    else{
+        printf("开辟空间成功\n");
+    }
+    return;
+}
+int is_empty(struct array *p){
+    if(0==p->cnt)
+        return 1;
+    return 0;
+}
+int is_full(struct array *p){
+    if(p->len==p->cnt)
+        return 1;
+    return 0;
+}
+void append_array(struct array *p,int val){
+    if(is_full(p)==1){
+        printf("数组已经满了 无法追加元素\n");
+    }
+    else{
+        p->base[p->cnt]=val;
+        (p->cnt)++;
+    }
+    return;
+}
+void insert_array(struct array *p,int index,int val){
+    int i;
+    if(is_full(p)==1){
+        printf("数组已经满了 无法插入元素\n");
+    }
+    else{
+        if(index<0 || index>(p->cnt)){
+            printf("插入位置不合法\n");
+        }
+        else{
+            for(i=(p->cnt)-1;i>=index;i--){
+                p->base[i+1]=p->base[i];
+            }
+            p->base[index]=val;
+            (p->cnt)++;
+        }
+    }
+    return;
+}
+void delete_array(struct array *p,int index,int* val){
+    int i;
+    if(is_empty(p)==1){
+        printf("数组是空的，无法删除元素\n");
+    }
+    else{
+        if(index<0 || index>(p->cnt)-1){
+            printf("删除位置不合法\n");
+        }
+        else{
+            *val=p->base[index];
+            for(i=index+1;i<p->cnt;i++){
+                p->base[i-1]=p->base[i];
+            }
+            (p->cnt)--;
+        }
+    }
+    return;
+}
+//冒泡排序
+void sort_array(struct array *p){
+    int i;
+    int j;
+    int temp;
+    int flag;
+    if(is_empty(p)==1){
+        printf("数组是空de\n");
+    }
+    else{
+        for(i=0;i<p->cnt;i++){
+            flag=0;
+            for(j=i+1;j<p->cnt;j++){
+                if(p->base[i]>p->base[j]){
+                    temp=p->base[i];
+                    p->base[i]=p->base[j];
+                    p->base[j]=temp;
+                    flag=1;
+                }
+            }
+            if(0==flag)
+                break;
+        }
+    }
+    return;
+}
+int find_array(struct array *p,int val){
+    int left=0;
+    int right=p->cnt-1;
+    int mid;
+    
+    if(is_empty(p)==1){
+        printf("数组是空de\n");
+    }
+    else{
+        sort_array(p);
+        while(left<=right){
+            mid=(left+right)/2;
+            if(p->base[mid]==val){
+                return mid;
+            }
+            else if(p->base[mid]>val){
+                right=mid-1;
+            }
+            else{
+                left=mid+1;
+            }
+        }
+        
+    }
+    return -1;
+}
+void reverse_array(struct array *p){
+    int i=0;
+    int j=p->cnt-1;
+    int temp;
+    while(i<j){
+        temp=p->base[i];
+        p->base[i]=p->base[j];
+        p->base[j]=temp;
+        i++;
+        j--;
+    }
+    return;
+}
+void show_array(struct array *p){
+    int i=0;
+    if(is_empty(p)==1){
+        printf("数组是空de\n");
+    }
+    else{
+        for(i=0;i<p->cnt;i++){
+            printf("%d ",p->base[i]);
+        }
+        printf("\n");
+    }
+    return;
+    
+}
+
