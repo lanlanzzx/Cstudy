@@ -1,0 +1,28 @@
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param root TreeNode类 
+ * @return int整型
+ */
+int maxDepth(struct TreeNode* root ) {
+    // write code here
+    if(NULL==root){
+        return 0;
+    }
+    else{
+        int left=maxDepth(root->left);
+        int right=maxDepth(root->right);
+        if(left>right)
+           return left+1;
+        else
+           return right+1;
+    }
+}
