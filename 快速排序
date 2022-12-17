@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+void quick_sort(int *,int,int);
+int  find_pos(int *,int,int);
+int main(){
+    int arr[5]={-1,-19,2,7,-8};
+    //find_pos(arr, 0, 4);
+    quick_sort(arr, 0, 4);
+    int i=0;
+    for(i=0;i<5;i++)
+        printf("%d ",arr[i]);
+    printf("\n");
+    return 0;
+}
+int  find_pos(int arr[5],int left,int right){
+    int val=arr[left];
+    while(left<right){
+        while(left<right && arr[right]>=val)
+            right--;
+        arr[left]=arr[right];
+        while(left<right && arr[left]<=val)
+            left++;
+        arr[right]=arr[left];
+    }
+    arr[left]=val;
+    //printf("aaaa%d ",left);
+    return left;
+    
+}
+
+void quick_sort(int arr[5],int left,int right){
+//    if(len==1){
+//        return;
+//    }
+//    else{
+    if(left<right){
+        int pos;
+        pos=find_pos(arr, left, right);
+        printf("aaaa%d ",pos);
+        quick_sort(arr, left, pos-1);
+        quick_sort(arr, pos+1, right);
+        
+    }
+    //}
+    //int left=0;
+    //int right=len-1;
+    return;
+}
