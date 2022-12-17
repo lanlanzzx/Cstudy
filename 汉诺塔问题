@@ -9,14 +9,14 @@ int main(){
     hannuota(n,one,two,three);
     return 0;
 }
-void hannuota(int n,char one,char two,char three){
+void hannuota(int n,char one,char two,char three){//将n个盘子从第一个柱子借助第二个柱子移动到第三个柱子
     if(n==1){
         printf("****编号为%d从%c移动到%c柱子\n",n,one,three);
     }
     else{
-        hannuota(n-1,one,three,two);
-        printf("编号为%d从%c移动到%c柱子\n",n,one,three);
-        hannuota(n-1,two,one,three);
+        hannuota(n-1,one,three,two);//先将n-1个盘子从第一个柱子借助第三个柱子移动到第二个柱子
+        printf("编号为%d从%c移动到%c柱子\n",n,one,three);//将第n个盘子从第一个柱子移动到第三个柱子
+        hannuota(n-1,two,one,three);//将n-1个盘子从第二个柱子借助第一个柱子移动到第三个柱子
     }
     return;
 }
