@@ -76,3 +76,127 @@ void ofs_tra(pnode pd){
     }
     return;
 }
+
+//加入了清除和销毁的操作
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node{
+    char data;
+    struct node *left;
+    struct node *right;
+}*pnode,node;
+pnode create(void);
+void pre_tra(pnode);
+void int_tra(pnode);
+void ofs_tra(pnode);
+void clear_tree(pnode);
+pnode destory_tree(pnode);
+int main(){
+    pnode pn=create();
+//    pre_tra(pn);
+//    printf("\n");
+//    int_tra(pn);
+//    printf("\n");
+//    ofs_tra(pn);
+//    printf("\n");
+    pn=destory_tree(pn);
+//    if(pn!=NULL){
+//        printf("destory完毕");
+    printf("%d ",pn==NULL);
+//        ofs_tra(pn);
+//    }
+    //ofs_tra(pn);
+    printf("\n");
+    return 0;
+    
+}
+pnode create(){
+    pnode p0=(pnode)malloc(sizeof(node)*1);
+    pnode p1=(pnode)malloc(sizeof(node)*1);
+    pnode p2=(pnode)malloc(sizeof(node)*1);
+    pnode p3=(pnode)malloc(sizeof(node)*1);
+    pnode p4=(pnode)malloc(sizeof(node)*1);
+    p0->data='a';
+    p0->left=p1;
+    p0->right=p2;
+    p1->data='b';
+    p1->left=p3;
+    p1->right=NULL;
+    p2->data='c';
+    p2->left=NULL;
+    p2->right=p4;
+    p3->data='d';
+    p3->left=NULL;
+    p3->right=NULL;
+    p4->data='f';
+    p4->left=NULL;
+    p4->right=NULL;
+    return p0;
+}
+void pre_tra(pnode pd){
+    if(pd==NULL)
+        return;
+    else{
+        printf("%c",pd->data);
+        pre_tra(pd->left);
+        pre_tra(pd->right);
+    }
+    return;
+}
+void int_tra(pnode pd){
+    if(pd==NULL)
+        return;
+    else{
+        
+        int_tra(pd->left);
+        printf("%c",pd->data);
+        int_tra(pd->right);
+    }
+    return;
+}
+void ofs_tra(pnode pd){
+    if(pd==NULL)
+        return;
+    else{
+        
+        ofs_tra(pd->left);
+        ofs_tra(pd->right);
+        printf("%c",pd->data);
+        
+    }
+    return;
+}
+void clear_tree(pnode pd){
+    if(pd==NULL)
+        return;
+    else{
+        pd->data=NULL;
+        clear_tree(pd->left);
+        clear_tree(pd->right);
+    }
+    return;
+}
+pnode destory_tree(pnode pd){
+    if(pd->left==NULL && pd->right==NULL)
+    {
+       
+            free(pd);
+        printf("0000    %c\n",pd->data);
+            pd=NULL;
+        printf("0000    %d\n",pd==NULL);
+    }
+    else{
+         //pd->data=NULL;
+        if (pd->left!=NULL)
+            destory_tree(pd->left);
+        
+        if (pd->right!=NULL)
+            destory_tree(pd->right);
+        free(pd);
+        printf("0000    %c\n",pd->data);
+        pd=NULL;
+        printf("0000    %d\n",pd==NULL);
+    }
+    return pd;
+}
+
