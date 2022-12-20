@@ -1,0 +1,47 @@
+
+/**
+ * 
+ * @param data int整型一维数组 
+ * @param dataLen int data数组长度
+ * @param k int整型 
+ * @return int整型
+ */
+int GetNumberOfK(int* data, int dataLen, int k ) {
+    // write code here
+    if(k>data[dataLen-1] || k<data[0])
+       return 0;
+    else{
+        int left=0;
+        int right=dataLen-1;
+        int pos=-1;
+        while(left<=right){
+            int mid=(left+right)/2;
+            if(data[mid]>k){
+                right=mid-1;
+            }
+            else if(data[mid]==k){
+                     pos=mid;
+                     break;
+            }
+            else{
+                left=mid+1;
+            }
+                
+        }
+        if(pos!=-1){
+        int count=0;
+        int jj=pos-1;
+        int kk=pos+1;
+        while((jj>=0)&&(jj<dataLen)&&(data[jj--]==k)){
+            count++;
+        }
+         while((kk>=0)&&(kk<dataLen)&&(data[kk++]==k)){
+            count++;
+        }
+        return count+1;}
+        else{
+            return 0;
+        }
+
+    }
+}
