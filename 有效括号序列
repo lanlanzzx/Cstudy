@@ -1,0 +1,44 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param s string字符串 
+ * @return bool布尔型
+ */
+ int isin(char c,char left[3]){
+     int i=0;
+     for(i=0;i<3;i++){
+         if(c==left[i])
+           return i;
+     }
+     return -1;
+ }
+bool isValid(char* s ) {
+    // write code here
+    char left[3]={'(','{','['};
+    char right[3]={')','}',']'};
+    char *stack=(char *)calloc(10001,sizeof(char));
+    int len=strlen(s);
+    int i=0;
+    int top=0;
+    int j=0;
+    for(i=0;i<len;i++){
+        j=isin(s[i],left);
+       if(j!=-1){
+             stack[top++]=s[i];
+       }
+       else{
+           if(top==0){
+               return false;
+           }
+           else{  
+                
+                if(isin(stack[--top], left)!=isin(s[i], right))
+                     return false;
+           }
+       }
+    }
+    if(top==0)
+       return true;
+    return false;
+}
