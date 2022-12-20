@@ -1,0 +1,30 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param strs string字符串一维数组 
+ * @param strsLen int strs数组长度
+ * @return string字符串
+ */
+char* longestCommonPrefix(char** strs, int strsLen ) {
+    // write code here
+    if(strsLen>0){
+    char *ans=(char *)malloc(sizeof(char)*5001);
+    strcpy(ans,strs[0]);
+    int i=0;
+    int j=0;
+    while(j<strlen(strs[0])){
+    for(i=1;i<strsLen;i++){
+         if(ans[j]!=strs[i][j])
+            {ans[j]='\0';
+            return ans;}
+         
+    }
+    j++;
+    }
+    return ans;
+    }
+    else{
+        return "";
+    }
+}
