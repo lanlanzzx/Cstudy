@@ -18,14 +18,14 @@ bool hasCycle(struct ListNode* head ) {
        return false;
     struct ListNode* p1=head;
     struct ListNode* p2=head;
-    while(p2 && p2->next){
+    while(p2->next){
         
         p1=p1->next;
         //printf("11%d ",p1->val);
         if(p1==NULL)
             return false;
         
-        p2=p2->next->next;//要保证这句话不会出错 有问题 p2 && p2->next
+        p2=p2->next->next;//要保证这句话不会出错 有问题p2->next！=null
         if(p2==NULL)
             return false;
         //printf("22%d ",p2->val);
