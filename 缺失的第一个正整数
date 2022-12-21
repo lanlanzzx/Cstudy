@@ -1,0 +1,27 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param nums int整型一维数组 
+ * @param numsLen int nums数组长度
+ * @return int整型
+ */
+ //长度为n的数组 寻找最小的没有出现的正整数 如果1～n全部都出现了的话 
+ //最小的没有出现的整数数就是n+1。不然就是某个1～n之间的数
+int minNumberDisappeared(int* nums, int numsLen ) {
+    // write code here
+    int i=0;
+    int *hash=(int*)malloc(sizeof(int)*numsLen);
+    for(i=0;i<numsLen;i++){
+        if((nums[i]>0)&&(nums[i]<=numsLen)){
+               hash[nums[i]-1]=1;
+        }
+
+    }
+    for(int j=1;j<numsLen+1;j++){
+        if(hash[j-1]!=1){
+            return j;
+        }
+    }
+    return numsLen+1;
+}
