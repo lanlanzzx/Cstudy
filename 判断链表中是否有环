@@ -1,0 +1,51 @@
+#include <stdbool.h>
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param head ListNode类 
+ * @return bool布尔型
+ */
+bool hasCycle(struct ListNode* head ) {
+    // write code here
+    //双指针做法
+    if(head==NULL || head->next==NULL)
+       return false;
+    struct ListNode* p1=head;
+    struct ListNode* p2=head;
+    while(p2 && p2->next){
+        
+        p1=p1->next;
+        //printf("11%d ",p1->val);
+        if(p1==NULL)
+            return false;
+        
+        p2=p2->next->next;//要保证这句话不会出错 有问题 p2 && p2->next
+        if(p2==NULL)
+            return false;
+        //printf("22%d ",p2->val);
+        if(p1==p2)
+            return true;
+        
+    }
+    return false;
+    //判断数量的做法  但是这需要你知道链表的大概大小才可以
+    // if(head==NULL)
+    //     return false;
+    // int count=0;
+    // struct ListNode* p=head->next;
+    // while(p){
+    //     p=p->next;
+    //     count++;
+    //     if(count>10000)
+    //        return true;
+    // }
+    // // if(count>1000)
+    // //    return false;
+    // return false;
+}
