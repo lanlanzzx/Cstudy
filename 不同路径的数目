@@ -1,0 +1,29 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param m int整型 
+ * @param n int整型 
+ * @return int整型
+ */
+int uniquePaths(int m, int n ) {
+    // write code heree
+    int **dp=(int **)malloc(m*sizeof(int *));
+    for(int i=0;i<m;i++){
+        dp[i]=(int *)malloc(n*sizeof(int));
+    }
+    for(int ii=0;ii<m;ii++){
+        dp[ii][0]=1;
+    }
+    for(int kk=0;kk<n;kk++){
+        dp[0][kk]=1;
+    }
+    for(int j=1;j<m;j++){
+        for(int jj=1;jj<n;jj++){
+            dp[j][jj]=dp[j-1][jj]+dp[j][jj-1];
+        }
+    }
+    return dp[m-1][n-1];
+
+    
+}
