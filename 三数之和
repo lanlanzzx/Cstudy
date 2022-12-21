@@ -1,0 +1,55 @@
+
+/**
+ * 
+ * @param num int整型一维数组 
+ * @param numLen int num数组长度
+ * @return int整型二维数组
+ * @return int* returnSize 返回数组行数
+ * @return int** returnColumnSizes 返回数组列数
+ */
+int compare(const void* p1,const void *p2){
+    return (*(int*)p1-*(int*)p2);
+}
+int** threeSum(int* num, int numLen, int* returnSize, int** returnColumnSizes ) {
+    // write code here
+    if(numLen<3)
+       return NULL;
+    *returnColumnSizes = (int *)malloc(numLen*numLen*sizeof(int));
+    // **returnColumnSizes=3;
+    int ** arr=(int **)malloc(10000*sizeof(int *));
+    for(int ii=0;ii<1000;ii++){
+        arr[ii]=(int *)malloc(sizeof(int)*3);
+    }
+    //int(**)[3]=(int(*)[3])malloc(10000*3*sizeof(int));
+    qsort(num,numLen,sizeof(num[0]),compare);//升序排序
+    int i=0;
+    int count=0;
+    for(i=0;i<numLen-2;i++){
+        if(num[i]==num[i-1]&&i)continue;//这个元素与之前的元素相同 就可以不进行下去了
+        int j=i+1;
+        int k=numLen-1;
+        while(j<k){
+            if((num[j]+num[k])>(-num[i])){
+                k--;
+            }
+            else if((num[j]+num[k])<(-num[i])){
+                j++;
+            }
+            else{
+                arr[count][0]=num[i];
+                arr[count][1]=num[j];
+                arr[count][2]=num[k];
+                (*returnColumnSizes)[count]=3;
+                while(num[j]==num[j+1]&&j+1<k)j++;//过滤重复解
+                while(num[k]==num[k-1]&&k-1>j)k--;//过滤重复解
+                count++;
+                j++;
+                k--;
+            }
+        }
+    }
+    * returnSize=count;
+
+    return arr;
+    
+}
