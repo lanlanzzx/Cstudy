@@ -1,0 +1,40 @@
+
+/**
+ *
+ * @param array int整型一维数组
+ * @param arrayLen int array数组长度
+ * @return int整型
+ */
+int mid(int* arr, int left, int right) {
+    int value = arr[(left + right) / 2];
+    int left_sum = 0;
+    int right_sum=0;
+    for (int i = left; i < (left + right) / 2; i++) {
+        if ((left_sum + arr[i]) <= 0)
+            left_sum = 0;
+        else
+            left_sum = left_sum + arr[i];
+    }
+    for (int j =right; j >(left + right) / 2; j--) {
+        if ((right_sum + arr[j]) <= 0)
+            right_sum = 0;
+        else
+            right_sum = right_sum + arr[j];
+    }
+    return value+left_sum+right_sum;
+
+}
+int maxarr(int* arr, int left, int right) {
+    if (left == right) {
+        return arr[left];
+    } else {
+        int a = maxarr(arr, left, (right + left) / 2);
+        int b = maxarr(arr, (right + left) / 2 + 1, right);
+        int c =mid(arr,left,right);
+        return (a>b)?(a>c?a:c):(b>c?b:c);
+    }
+}
+int FindGreatestSumOfSubArray(int* array, int arrayLen ) {
+    // write code here
+    return maxarr(array,0,arrayLen-1);
+}
