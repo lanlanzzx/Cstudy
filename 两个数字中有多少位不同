@@ -7,6 +7,7 @@
  * @return int整型
  */
  //负数在内存中存储的就是补码
+ //先是计算两个数的异或结果 相同为0 不同为1。最后根据这结果判断有几个1.
 int countBitDiff(int m, int n ) {
     // write code here
     int i=0;
