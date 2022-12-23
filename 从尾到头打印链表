@@ -1,0 +1,52 @@
+/**
+ * struct ListNode {
+ *  int val;
+ *  struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param listNode ListNode类
+ * @return int整型一维数组
+ * @return int* returnSize 返回数组行数
+ */
+int* printListFromTailToHead(struct ListNode* listNode, int* returnSize ) {
+    // write code here
+    //先判断出链表元素 然后直接将链表中的第一个元素放进数组的最后一个位置 以此类推
+    struct ListNode* p1 = listNode;
+    int count = 0;
+    while (p1 != NULL) {
+        //ans[count++] = p1->val;
+        p1 = p1->next;
+        count++;
+    }
+    *returnSize = count;
+    int* ans = (int*)malloc(sizeof(int) * count);
+    while (listNode != NULL) {
+            ans[--count] = listNode->val;
+            listNode = listNode->next;
+            //count++;
+        }
+
+    return ans;
+    //第二种方法 就是先把链表中的数据取出来放进数组里面去 再把数组给颠倒一下
+    // int* ans = (int*)malloc(sizeof(int) * 20000);
+    // struct ListNode* p1 = listNode;
+    // int count = 0;
+    // while (p1 != NULL) {
+    //     ans[count++] = p1->val;
+    //     p1 = p1->next;
+    // }
+    // int j = count;
+    // int anss = count;
+    // printf("%d ", count);
+    // while (j) {
+    //     ans[count++] = ans[j - 1];
+    //     j--;
+    // }
+    // *returnSize = anss;
+    // return ans + anss;
+
+}
