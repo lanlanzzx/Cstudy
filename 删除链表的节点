@@ -1,0 +1,28 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param head ListNode类 
+ * @param val int整型 
+ * @return ListNode类
+ */
+struct ListNode* deleteNode(struct ListNode* head, int val ) {
+    // write code here
+    struct ListNode*p1=head;
+    //printf("%d ",p1->val);
+    if(p1->val==val)
+        return p1->next;
+    while(p1->next){
+        if(p1->next->val==val){
+            p1->next=p1->next->next;
+        }
+        p1=p1->next;
+    }
+    return head;
+}
