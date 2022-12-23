@@ -1,0 +1,39 @@
+
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param arr int一维数组 
+ * @param arrLen int arr数组长度
+ * @param k int 
+ * @return int
+ */
+ //位运算 能够很巧妙的解决这个问题
+ //因为其他数字都出现了k次 则32位中该位置上1的数量一定是k的倍数 
+int foundOnceNumber(int* arr, int arrLen, int k ) {
+    // write code here
+    int m=0;
+    if(k%2==0){
+        for(int i=0;i<arrLen;i++)
+             m=m^arr[i];
+        return m;
+    }
+    else{
+        int ans=0;
+        int flag=1;
+        while(m<32){
+            int count=0;
+            for(int j=0;j<arrLen;j++){
+                count+=(arr[j])&flag;
+                arr[j]=(arr[j])>>1;
+            }
+            if(count%k!=0){
+                ans+=1<<m;//算2的次方
+            }
+            m++;
+
+            
+        }
+       return ans;
+    }
+}
