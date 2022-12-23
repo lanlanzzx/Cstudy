@@ -1,0 +1,23 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param m int整型 
+ * @param n int整型 
+ * @return int整型
+ */
+ //负数在内存中存储的就是补码
+int countBitDiff(int m, int n ) {
+    // write code here
+    int i=0;
+    //int ans=0;
+    int ans=m^n;
+    int count=0;
+    while(i<32){
+        count+=(ans&1);
+        i++;
+        ans=ans>>1;
+
+    }
+    return count;
+}
