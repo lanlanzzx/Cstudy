@@ -1,0 +1,21 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param numbers int整型一维数组 
+ * @param numbersLen int numbers数组长度
+ * @return int整型
+ */
+int duplicate(int* numbers, int numbersLen ) {
+    // write code here
+    int *hash=(int *)calloc(numbersLen,sizeof(int));
+    for(int i=0;i<numbersLen;i++){
+        hash[numbers[i]]+=1;
+    }
+    for(int j=0;j<numbersLen;j++){
+        if(hash[j]>1){
+            return j;
+        }
+    }
+    return -1;
+}
