@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<assert.h>
+void* my_memcpy(void* p1,const void *p2,size_t num){
+    assert(p1 &&p2);
+    char *ret1=(char *)p1;
+    char *ret2=(char *)p2;
+    
+    while(num){
+        *ret1=*ret2;
+        ret1++;
+        ret2++;
+        num--;
+    }
+    return p1;
+}
+void* my_memmove(void* p1,void*p2,size_t num){
+    assert(p1 &&p2);
+    char *ret1=(char *)p1;
+    char *ret2=(char *)p2;
+    if(p1<p2 || p1>=p2+num){
+        memcpy(p1, p2, num);
+    }
+    else{
+        while(num--){
+            *(ret1+num)=*(ret2+num);
+        }
+    }
+    return p1;
+}
+struct stu{
+    char name[30];
+    int age;
+};
+
+int main(){
+    int arr1[]={1,2,3,4,5,6,7,8,9,10};
+    struct stu s1={"ym",35};
+    struct stu s2={0};
+    //int arr2[20]={0};
+    my_memcpy(&s2, &s1, sizeof(s1));
+    my_memcpy(arr1+2, NULL, 20);
+    //my_memmove(arr1+2, arr1, 20);
+    int a=0;
+    return 0;
+    
+}
