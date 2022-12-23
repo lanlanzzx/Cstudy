@@ -1,0 +1,32 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param nums1 int整型一维数组 
+ * @param nums1Len int nums1数组长度
+ * @param nums2 int整型一维数组 
+ * @param nums2Len int nums2数组长度
+ * @return int整型一维数组
+ * @return int* returnSize 返回数组行数
+ */
+int* intersection(int* nums1, int nums1Len, int* nums2, int nums2Len, int* returnSize ) {
+    // write code here
+    int* hash=(int *)calloc(1000,sizeof(int));
+    int* ans=(int *)malloc(1000*sizeof(int));
+    for(int i=0;i<nums1Len;i++){
+        hash[nums1[i]-1]=1;
+    }
+    int count=0;
+    for(int j=0;j<nums2Len;j++){
+        if(hash[nums2[j]-1]==1){
+            hash[nums2[j]-1]+=1;
+            if(hash[nums2[j]-1]==2){
+                    ans[count++]=nums2[j];
+        }
+        }
+    }
+    *returnSize=count;
+    return ans;
+
+    
+}
