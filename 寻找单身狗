@@ -1,0 +1,44 @@
+//寻找单身狗
+//意思是在一组数中 每个数字都出现两次 只有两个数字只出现了一次 目的是找出这两个数字
+//思路：先求全部数字的异或和 由于其他数字都是成对出现的 最后的结果就是这两个数字的异或。则结果中有1的部分即是这两个数字的不同的部分 以此来划分成两个部分
+//将这组数分成两个部分 将这只出现一次的两个数分成两组 然后加起来全部异或 分别得到这两个不同的数字
+int * dog_find(int *arr,int arr_len){
+    int p1[2]={0};
+    int sum=0;
+    for(int i=0;i<arr_len;i++){
+        sum=sum^arr[i];
+    }
+    int flag;
+    //int count;
+    int j;
+    for(j=0;j<32;j++){
+        flag=sum&1;
+        if(flag==1)
+            break;
+        sum=sum>>1;
+    }
+    //count=1<<j;
+    int sum1=0;
+    int sum2=0;
+    for(int i=0;i<arr_len;i++){
+        if(((arr[i]<<j)&1)==1){
+            sum1=sum1^arr[i];
+        }
+        else{
+            sum2=sum2^arr[i];
+        }
+        
+    }
+    p1[0]=sum1;
+    p1[1]=sum2;
+    printf("%d %d\n",sum1,sum2);
+    return p1;
+    
+    
+}
+int main(){
+    int arr[10]={1,2,3,4,9,1,2,3,4,8};
+    int *p1=dog_find(arr, 10);
+    
+    return 0;
+}
