@@ -1,0 +1,26 @@
+
+/**
+ * 旋转字符串
+ * @param A string字符串 
+ * @param B string字符串 
+ * @return bool布尔型
+ */
+ //如果A分割转换位置可以拼成B，那么如果两个A直接合并，一定中间有个B
+ //如果A和B一模一样 一定是可以的
+ //如果A和B长度都不一样。则一定是不符合的
+bool solve(char* A, char* B ) {
+    // write code here
+    if(strcmp(A, B)==0)
+       return true;
+    if(strlen(A)!=strlen(B))
+       return false;
+    char * AA=(char *)malloc(2*strlen(A)+1);
+    strcpy(AA,A);
+    strcat(AA,A);
+    char *str=strstr(AA,B);
+    if(str)
+        return true;
+    else
+        return false; 
+    
+}
