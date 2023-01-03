@@ -37,7 +37,7 @@ int maxLength(int* arr, int arrLen ) {
             max = right - left;
             //printf("%d ",max);
             for (int i = leftpre; i < left; i++) {
-                hash[arr[i]] = 0;
+                hash[arr[i]] = 0;//将刚刚移除窗口的数组次数初始化为0
             }
         }
         if (max > maxvalue)
