@@ -1,0 +1,42 @@
+/**
+ * struct ListNode {
+ *  int val;
+ *  struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param head ListNode类
+ * @param x int整型
+ * @return ListNode类
+ */
+struct ListNode* partition(struct ListNode* head, int x ) {
+    // write code here
+    if(head==NULL)
+         return NULL;
+    struct ListNode* p1 = (struct ListNode*)malloc(sizeof(struct ListNode));
+    struct ListNode* p2 = (struct ListNode*)malloc(sizeof(struct ListNode));
+    struct ListNode* p3 = head;
+    struct ListNode* p11 = p1;
+    struct ListNode* p22 = p2;
+    while (p3) {
+        if (p3->val < x) {
+            struct ListNode* temp = (struct ListNode*)malloc(sizeof(struct ListNode));
+            temp->val = p3->val;
+            p1->next = temp;
+            p1 = temp;
+        } else {
+            struct ListNode* temp = (struct ListNode*)malloc(sizeof(struct ListNode));
+            temp->val = p3->val;
+            p2->next = temp;
+            p2 = temp;
+
+        }
+        p3=p3->next;
+    }
+    p1->next=p22->next;
+    return p11->next;
+
+}
