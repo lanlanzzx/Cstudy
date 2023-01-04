@@ -1,0 +1,37 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param head ListNode类 the head node
+ * @return ListNode类
+ */
+ int cmp(const void *e1,const void *e2){
+    return *(int*)e1-*(int*)e2;
+ }
+struct ListNode* sortInList(struct ListNode* head ) {
+    // write code here
+    int* arr=(int *)malloc(100000*sizeof(int));
+    int count=0;
+    while(head){
+        arr[count++]=head->val;
+        head=head->next;
+    }
+    qsort(arr,count,sizeof(int),cmp);
+    struct ListNode* ans=(struct ListNode*)malloc(sizeof(struct ListNode));
+    struct ListNode* ans1=ans;
+    int j=0;
+    while(j<count){
+        struct ListNode* temp=(struct ListNode*)malloc(sizeof(struct ListNode));
+        temp->val=arr[j];
+        ans->next=temp;
+        ans=temp;
+        j++;
+    }
+    return ans1->next;
+
+}
