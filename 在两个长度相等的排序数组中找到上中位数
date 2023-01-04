@@ -1,0 +1,38 @@
+
+/**
+ * find median in two sorted array
+ * @param arr1 int整型一维数组 the array1
+ * @param arr1Len int arr1数组长度
+ * @param arr2 int整型一维数组 the array2
+ * @param arr2Len int arr2数组长度
+ * @return int整型
+ */
+int findMedianinTwoSortedAray(int* arr1, int arr1Len, int* arr2, int arr2Len ) {
+    // write code here
+    int n=(arr1Len+arr2Len)/2;
+    int i=0;
+    int j=0;
+    int count=0;
+    while((i<arr1Len)&&(j<arr2Len)){
+        if(arr1[i]<=arr2[j]){
+            count++;
+           
+            if(count==n)
+               return arr1[i];
+            i++;
+        }
+        else{
+            count++;
+           
+            if(count==n)
+               return arr2[j];
+            j++;
+        }
+    }
+    if(i==arr1Len){
+        return arr2[j+n-count-1];
+    }
+    else{
+        return arr1[i+n-count-1];
+    }
+}
