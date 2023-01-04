@@ -1,0 +1,35 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param x int整型 
+ * @return int整型
+ */
+ #define intmax 2147483647
+ #define intmin -2147483648
+int reverse(int x ) {
+    // write code here
+     int a=x;
+     if(a<0)
+         a=a*(-1);
+     int sum=0;
+     int temp;
+     while(a>0){
+          temp=a%10;
+          a=a/10;
+          if(sum>intmax/10 || (-sum)<intmin/10)
+             return 0;
+          //如果仅仅只考虑数字反转后的值是否溢出  则可能会出现sum=sum*10+temp导致溢出 结果有错误。所以在进行乘以10的操作之前 我们就要预判是否溢出
+          sum=sum*10+temp;
+          //printf("%d\n",sum);
+     }
+     if(sum>intmax || (-sum)<intmin)
+        return 0;
+    //  if(x<0 )
+    //     return sum*(-1);
+    //  if(x>=0){
+    //     //printf("%d ",sum);
+    //     return sum;}
+     //return 0;
+     return x>0?sum:-1*sum;
+}
