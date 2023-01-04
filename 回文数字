@@ -1,0 +1,24 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param x int整型 
+ * @return bool布尔型
+ */
+bool isPalindrome(int x ) {
+    // write code here
+    if(x<0)
+       return false;
+    if(x==0)
+        return true;
+    char *str=(char *)malloc(sizeof(char)*10000000);
+    sprintf(str,"%d",x);//将一个整数变成一个字符串
+    //printf("%s ",str);
+    int left=0;
+    int right=strlen(str)-1;
+    while(left<right){
+        if(str[left++]!=str[right--])
+           return false;
+    }
+    return true;
+}
