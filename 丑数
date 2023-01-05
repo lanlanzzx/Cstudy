@@ -1,0 +1,42 @@
+
+/**
+ * 
+ * @param index int整型 
+ * @return int整型
+ */
+int GetUglyNumber_Solution(int index ) {
+    // write code here
+    int *ans=(int *)malloc(sizeof(int)*index);
+    ans[0]=1;
+    int count=1;
+    int p2=0;
+    int p3=0;
+    int p5=0;
+    while(count<index){
+        if(ans[p2]*2<ans[p3]*3){
+            if(ans[p2]*2<ans[p5]*5){
+                if(ans[p2]*2!=ans[count-1])
+                     ans[count++]=ans[p2]*2;
+                p2++;
+            }
+            else{
+                if(ans[p5]*5!=ans[count-1])
+                      ans[count++]=ans[p5]*5;
+                p5++;
+            }
+        }
+        else{
+            if(ans[p3]*3<ans[p5]*5){
+                if(ans[p3]*3!=ans[count-1])
+                     ans[count++]=ans[p3]*3;
+                p3++;
+            }
+            else{
+                if(ans[p5]*5!=ans[count-1])
+                     ans[count++]=ans[p5]*5;
+                p5++;
+            }
+        }
+    }
+    return ans[index-1];
+}//具体分析看牛客
