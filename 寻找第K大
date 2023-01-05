@@ -1,0 +1,17 @@
+
+/**
+ * 
+ * @param a int整型一维数组 
+ * @param aLen int a数组长度
+ * @param n int整型 
+ * @param K int整型 
+ * @return int整型
+ */
+ int  cmp(const void * e1,const void * e2){
+    return *(int *)e2-*(int *)e1;
+ }
+int findKth(int* a, int aLen, int n, int K ) {
+    // write code here
+    qsort(a,aLen,sizeof(int),cmp);
+    return a[K-1];
+}
