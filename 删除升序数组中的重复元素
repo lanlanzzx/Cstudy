@@ -1,0 +1,27 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param nums int整型一维数组
+ * @param numsLen int nums数组长度
+ * @return int整型
+ */
+int reArrangeArray(int* nums, int numsLen ) {
+    // write code here   
+    int i=0;
+    int j=0;
+    int temp;
+    while(j<numsLen){
+        if(nums[i]==nums[j]){
+            j++;
+        }
+        else{
+            temp=nums[i+1];
+            nums[i+1]=nums[j];
+            nums[j]=temp;
+            i++;
+            j++;
+        }
+    }
+    return i+1;
+}
