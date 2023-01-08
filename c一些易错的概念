@@ -385,3 +385,39 @@ C sss(b[],a[]);
 D sss(b,a);
 函数声明里的形参我第一眼看到的是char和int，其实是char[],int[].等于char*和int*
 函数调用时，直接传入对应类型的变量就可以了。数组就是直接传数组名//
+
+//#include <iostream>
+using namespace std;
+int i = 0;
+int fun(int n) {
+    static int a = 2;
+    a++;
+    return (a * n);
+}
+ 
+int main() {
+    int k = 5;
+    {
+        int i = 2;
+        k += fun(i);
+    }
+    k += fun(i);
+    cout << k;
+    return (0);
+}
+11 正确答案是11
+12
+13
+14
+只是 { } 也能组成作用域。
+1. 所以上题 { } 内使用的 i 是局部变量 i，i=2，在第一句 k += fun( i ) 后k变成了11；
+2. 第二句k += fun( i ) 是在 { } 外，使用的i是全局变量，i=0，所以 k += fun( i ) 后k加上了0等于11；//
+
+
+//设有语句  char a = '\72';，则关于变量a的说法正确的是（）
+A 包含2个字符
+B 说明不合法
+C 包含1个字符
+D 包含3个字符
+\为转义字符，\72转义为一个八进制数72，也就是十进制数的58
+赋值给a，a就是一个ascii码为58的字符。//
