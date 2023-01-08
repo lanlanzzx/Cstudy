@@ -17,6 +17,7 @@ int hongstriangle(int* nums, int numsLen ) {
     int mid;
     int right;
     //int max=0;
+    //这道题首先确定下来最大边的取值 再到最小值的取值  最后是中间值的取值。三条边都是往小一点的数取值。
     if(numsLen<3)
        return -1;
     else{
