@@ -1,0 +1,38 @@
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param head ListNode类 
+ * @return  void
+ */
+ //存储的是指针 就是真的在移动这些链表节点
+void reorderList(struct ListNode* head ) {
+    // write code here
+    if(head==NULL)
+      return;
+    struct ListNode** arr=(struct ListNode**)malloc(sizeof(struct ListNode*)*20000);
+    int count=0;
+    struct ListNode *node;
+    while(head){
+       node=head;
+       //nodenext=NULL;
+       arr[count++]=node;
+       head=head->next; 
+    }
+    int i=0;
+    int j=count-1;
+    while(i<j){
+        arr[i]->next=arr[j];
+        i++;
+        arr[j]->next=arr[i];
+        j--;
+    }
+    arr[i]->next=NULL;
+    return;
+
+}
