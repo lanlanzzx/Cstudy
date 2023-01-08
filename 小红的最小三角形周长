@@ -1,0 +1,35 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param nums int整型一维数组 
+ * @param numsLen int nums数组长度
+ * @return int整型
+ */
+ int cnp(const void* a,const void *b)
+ {
+    return *(int *)a-*(int *)b;
+ }
+int hongstriangle(int* nums, int numsLen ) {
+    // write code here
+    qsort(nums,numsLen,sizeof(int),cnp);
+    int left;
+    int mid;
+    int right;
+    //int max=0;
+    if(numsLen<3)
+       return -1;
+    else{
+        for(right=2;right<numsLen;right++){
+              for(left=0;left<right-1;left++){
+                for(mid=left+1;mid<right;mid++){
+                    if(nums[left]+nums[mid]>nums[right])
+                         return nums[left]+nums[mid]+nums[right];
+                }
+              }
+        }
+        
+    }
+    return -1;
+
+}
