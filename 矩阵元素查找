@@ -10,6 +10,7 @@
  * @return int整型一维数组
  * @return int* returnSize 返回数组行数
  */
+ //由于二维数组是有序的，我们只需要选择起点为左下角处，从这里出发，向右的数字都比当前大，向上的数字都比当前小，因此实现了一个单右方向和单上方向的寻找路线，大大节省了时间代价
 int* findElement(int** mat, int matRowLen, int* matColLen, int n, int m, int x, int* returnSize ) {
     // write code here
      int * ans=(int *)malloc(sizeof(int)*2);
