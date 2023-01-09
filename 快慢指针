@@ -1,0 +1,62 @@
+/**
+ * struct ListNode {
+ *  int val;
+ *  struct ListNode *next;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param pHead ListNode类
+ * @return ListNode类
+ */
+//快慢指针
+//我们知道，用快慢指针可以很容易判断一条链表是否存在环，快指针fast每次走两步，慢指针slow每次走一步，那么若进入环中，每次他们之间的相对距离都会-1，直到两者相遇。虽然这能很快的知道是否存在环，但是它能否帮我们找到环的入口呢，答案是肯定的
+///假设从头节点到环的入口节点的前一个节点一共有a个，环中的节点有b个，设fast指针走过的节点数是f，slow指针走过的节点数是s，那么有以下两个结论：
+//f = 2 * s （即快指针走过的节点数一定是慢指针的两倍）
+  //  f = s + nb （当两者相遇时，快指针一定已经绕环走了n圈）
+        // 由上面两个等式可以得出，f = 2nb，s = nb
+        //         故可知，两指针相遇时，慢指针已经走了nb步，已知我们要走到入口节点，需要走a
+        //         + kb步，而这时s =
+        //             nb只要再走a即可到达入口，我们把快指针移动到头节点，然后两个指针一步一步往后走，当它们相遇时所处的位置就是入口节点
+struct ListNode * EntryNodeOfLoop(struct ListNode* pHead ) {
+    // write code here
+    struct ListNode* fast;
+    struct ListNode* slow;
+    fast = pHead;
+    slow = pHead;
+    int count = 0;
+    while (count <= 2) {
+        if (fast == NULL)
+            return NULL;
+        if (fast->next == NULL)
+            return NULL;
+        if (fast == slow) {
+            count++;
+            if (count == 1) {
+
+                fast = fast->next->next;
+
+                slow = slow->next;
+            }
+
+            if (count == 2) {
+                fast = pHead;
+            }
+        } else {
+            if (count == 1) {
+                fast = fast->next->next;
+
+                slow = slow->next;
+            }
+            if (count == 2) {
+                fast = fast->next;
+                slow = slow->next;
+            }
+        }
+    }
+    return fast;
+
+
+}
