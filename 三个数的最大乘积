@@ -1,0 +1,20 @@
+
+/**
+ * 最大乘积
+ * @param A int整型一维数组 
+ * @param ALen int A数组长度
+ * @return long长整型
+ */
+ int cnp(const void *e1,const void *e2){
+    return *(int*)e1-*(int *)e2;
+ }
+long long solve(int* A, int ALen ) {
+    // write code here
+    qsort(A,ALen,sizeof(int),cnp);
+    if(A[1]>=0)
+        return (long long)A[ALen-1]*A[ALen-2]*A[ALen-3];
+    else{
+        //if(A[3]>=0)
+           return (((long long)A[ALen-1]*A[ALen-2]*A[ALen-3]>(long long)A[ALen-1]*A[0]*A[1])?(long long)A[ALen-1]*A[ALen-2]*A[ALen-3]:(long long)A[ALen-1]*A[0]*A[1]);  
+        }
+    }
