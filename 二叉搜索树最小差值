@@ -1,0 +1,38 @@
+/**
+ * struct TreeNode {
+ *  int val;
+ *  struct TreeNode *left;
+ *  struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param root TreeNode类
+ * @return int整型
+ */
+int preorder(struct TreeNode* root, int* arr) {
+    static int count = 0;
+    if (NULL != root) {
+        arr[count++] = root->val;
+        preorder(root->left, arr);
+        preorder(root->right, arr);
+    }
+    return count;
+}
+int cnp(const void* e1,const void *e2){
+    return *(int*)e1-*(int*)e2;
+}
+int minDifference(struct TreeNode* root ) {
+    // write code here
+    int* arr=(int *)malloc(sizeof(int)*100000);
+    int count=preorder(root, arr);
+    qsort(arr,count,sizeof(int),cnp);
+    int ans=1000000000;
+    for(int i=1;i<count;i++){
+          if(ans>(arr[i]-arr[i-1]))
+              ans=arr[i]-arr[i-1];
+    }
+    return ans;
+}
