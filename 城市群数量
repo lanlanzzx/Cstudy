@@ -1,0 +1,39 @@
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param m int整型二维数组 
+ * @param mRowLen int m数组行数
+ * @param mColLen int* m数组列数
+ * @return int整型
+ */
+void dfs(int** m, int mr, int mc,int i){
+
+    for(int j=0;j<mr;j++){
+        if(m[i][j]==1){
+            m[i][j]=0;
+             m[j][i]=0;
+           dfs(m,mr,mc,j);
+           }
+    }
+      
+}
+int citys(int** m, int mRowLen, int* mColLen ) {
+    // write code here
+    int count=0;
+    for(int i=0;i<mRowLen;i++){
+        for(int j=0;j<*mColLen;j++){
+            
+                if(m[i][j]==1){
+                    count++;
+                    m[i][j]=0;
+                    m[j][i]=0;
+                    dfs(m,mRowLen,*mColLen,i);
+                    dfs(m,mRowLen,*mColLen,j);
+
+                
+            }
+        }
+    }
+    return count;
+}
