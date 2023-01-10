@@ -1,0 +1,41 @@
+/**
+ * struct TreeNode {
+ *  int val;
+ *  struct TreeNode *left;
+ *  struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ *
+ * @param root1 TreeNode类
+ * @param root2 TreeNode类
+ * @return bool布尔型
+ */
+bool preorder(struct TreeNode* root1, struct TreeNode* root2) {
+    //static int count = 0;
+    if (NULL != root1 && NULL != root2) {
+        if (root1->val != root2->val)
+            return false;
+        return preorder(root1->left, root2->left)&&preorder(root1->right, root2->right) ;
+        // preorder(root1->left, root2->left);
+        // preorder(root1->right, root2->right);
+    }
+    if (NULL != root1 && NULL == root2)
+        return false;
+    if (NULL == root1 && NULL != root2)
+        return false;
+    return true;
+}
+bool isSameTree(struct TreeNode* root1, struct TreeNode* root2 ) {
+    // write code here
+    // if(!root1 && !root2)
+    //     return true;
+    // if(!root1 || !root2)
+    //     return false;
+    // if(root1->val!=root2->val)
+    //     return false;
+    // return isSameTree(root1->left,root2->left)&&isSameTree(root1->right,root2->right);
+    return preorder(root1, root2);
+}
