@@ -1,0 +1,25 @@
+struct TreeNode* post(struct TreeNode* root,int value) {
+    //二叉树查找某个点。 找到就返回以该值为根的子树。
+    if(NULL==root)
+       return NULL;
+    struct TreeNode* temp=NULL;
+    if(root->left!=NULL){
+        temp=post(root->left,value);
+        if(temp!=NULL)
+           return temp;
+    }
+    if(root->right!=NULL){
+        temp=post(root->right,value);
+        if(temp!=NULL)
+           return temp;
+    }
+    
+    if(root->val==value)
+            return root;
+        // post(root->left,value);
+        // post(root->right,value);
+        //arr[count++] = root->val;
+    
+    return temp;
+
+}
