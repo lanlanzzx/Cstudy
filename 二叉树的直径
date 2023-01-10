@@ -1,0 +1,28 @@
+/**
+ * struct TreeNode {
+ *	int val;
+ *	struct TreeNode *left;
+ *	struct TreeNode *right;
+ * };
+ */
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ *
+ * 
+ * @param root TreeNode类 
+ * @return int整型
+ */
+ //以 root 为头结点的树，最大直径就是左右两个子树的高度相加 
+ int dfs(struct TreeNode* root){
+    if(NULL==root)
+       return 0;
+    else{
+        return (dfs(root->left)>dfs(root->right)?dfs(root->left):dfs(root->right))+1;
+    }
+ }
+int diameterOfBinaryTree(struct TreeNode* root ) {
+    // write code here
+    if(root==NULL)
+      return NULL;
+    return dfs(root->left)+dfs(root->right);
+}
