@@ -1,0 +1,63 @@
+/**
+ * struct TreeNode {
+ *  int val;
+ *  struct TreeNode *left;
+ *  struct TreeNode *right;
+ * };
+ */
+
+/**
+ *
+ * @param root1 TreeNode类
+ * @param root2 TreeNode类
+ * @return bool布尔型
+ */
+bool preorder(struct TreeNode* root1, struct TreeNode* root2) {
+    //static int count = 0;
+    if (NULL != root1 && NULL != root2) {
+        if (root1->val != root2->val)
+            return false;
+        return preorder(root1->left, root2->left) &&
+               preorder(root1->right, root2->right) ;
+        // preorder(root1->left, root2->left);
+        // preorder(root1->right, root2->right);
+    }
+    if (NULL != root1 && NULL == root2)
+        return false;
+    if (NULL == root1 && NULL != root2)
+        return false;
+    return true;
+}
+struct TreeNode* post(struct TreeNode* root,int value) {
+    if(NULL==root)
+       return NULL;
+    struct TreeNode* temp=NULL;
+    if(root->left!=NULL){
+        temp=post(root->left,value);
+        if(temp!=NULL)
+           return temp;
+    }
+    if(root->right!=NULL){
+        temp=post(root->right,value);
+        if(temp!=NULL)
+           return temp;
+    }
+    
+    if(root->val==value)
+            return root;
+        // post(root->left,value);
+        // post(root->right,value);
+        //arr[count++] = root->val;
+    
+    return temp;
+
+}
+bool isContains(struct TreeNode* root1, struct TreeNode* root2 ) {
+    // write code here
+    struct TreeNode* temp=post(root1,root2->val);
+    if(temp==NULL){
+        return false;
+    }
+    return preorder(temp,root2);
+
+}
