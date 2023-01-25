@@ -1,0 +1,41 @@
+bool checkPossibility(int* nums, int numsSize){
+    //如例①的情况，当 i = 1 ，那么修改 num[i- 1] ，不要动 nums[i] ，因为nums[i]后面的元素是啥我们还不知道呢，少动它为妙。
+// 如例②的情况，当 i > 1 时，我们应该优先考虑把 nums[i - 1] 调小到 >= nums[i - 2] 并且 <= nums[i]。同样尽量不去修改 nums[i] ，理由同上。
+// 如例③的情况，当 i > 1 且 nums[i] < nums[i - 2] 时，我们无法调整 nums[i - 1] ，我们只能调整 nums[i] 到 nums[i - 1] 。
+    int count=0;
+    for(int i=1;i<numsSize;i++){
+        if(count>1)
+            return false;
+        if(nums[i-1]>nums[i]){
+            if(i==1){
+                count++;
+                nums[i-1]=nums[i];
+            }
+            else{
+                if(nums[i-2]>nums[i]){
+                    count++;
+                    nums[i]=nums[i-1];
+                }
+                else{
+                    count++;
+                    nums[i-1]=nums[i];
+
+                }
+            }
+        }
+    }
+    if(count>1)
+        return false;
+    return true;
+    }
+
+    // int count=0;
+    // for(int i=0;i<=numsSize-2;i++){
+    //     if(nums[i]>nums[i+1]){
+    //         count++;
+    //     }
+    // }
+    // if(count>1)
+    //    return false;
+    // return true;
+
