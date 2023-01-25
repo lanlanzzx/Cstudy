@@ -1,0 +1,23 @@
+int findMiddleIndex(int* nums, int numsSize){
+   int midindex=0;
+   int sum=0;
+   for(int i=0;i<numsSize;i++){
+       sum+=nums[i];
+   }
+   int lsum=0;
+   int rightsum=sum;
+   for(midindex=0;midindex<numsSize;midindex++){
+       if(midindex!=0){
+           lsum+=nums[midindex-1];
+       }
+       rightsum=rightsum-nums[midindex];
+       if(rightsum==lsum){
+           return midindex;
+       }
+   }
+   if(midindex==numsSize-1){
+       if(lsum=0)
+           return midindex;
+   }
+   return -1;
+}
