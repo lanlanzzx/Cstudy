@@ -1,0 +1,15 @@
+int alternateDigitSum(int n){
+    int *ans=(int *)malloc(sizeof(int)*10);
+    int count=0;
+    while(n){
+        ans[count++]=n%10;
+        n=n/10;
+    }
+    int sum=0;
+    int flag=0;
+    for(int i=count-1;i>=0;i--){
+           sum=sum+ans[i]*pow(-1,flag);
+           flag++;
+    }
+    return sum;
+}
