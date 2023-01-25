@@ -1,0 +1,43 @@
+//把题目要求翻译成人话就是，
+// 如果两个字符串：
+
+// 包含的字符种类完全一样；
+// 把各个字符的重复次数放在一个数组里，数组在排序后完全一样；
+// 那么这两个字符串接近。
+
+
+int cnp(const void*e1,const void *e2){
+    return *(int *)e1-*(int *)e2;
+}
+bool closeStrings(char * word1, char * word2){
+    int n1=strlen(word1);
+    int n2=strlen(word2);
+    if(n1!=n2){
+        return false;
+    }
+    else{
+        int *h1=(int*)calloc(26,sizeof(int));
+        int *h2=(int*)calloc(26,sizeof(int));
+        for(int i=0;i<n1;i++){
+            h1[word1[i]-'a']+=1;
+            h2[word2[i]-'a']+=1;
+        }
+        for(int i=0;i<26;i++){
+            if(h1[i]==0 && h2[i]!=0)
+               return false;
+            if(h2[i]==0 && h1[i]!=0)
+               return false;
+        }
+        qsort(h1,26,sizeof(int),cnp);
+        qsort(h2,26,sizeof(int),cnp);
+        for(int i=0;i<26;i++){
+            if(h1[i]!=h2[i])
+               return false;
+        }
+        return true;
+    
+    }
+    return true;
+
+
+}
