@@ -1,0 +1,36 @@
+//最小的长方形面积
+int maxCount(int m, int n, int** ops, int opsSize, int* opsColSize){
+    if(opsSize==0){
+        return m*n;
+    }
+    int row=m;
+    int col=n;
+    for(int i=0;i<opsSize;i++){
+        if(row>ops[i][0])
+           row=ops[i][0];
+        if(col>ops[i][1])
+           col=ops[i][1];
+    }
+    return col*row;
+    // int**map=(int **)malloc(m*sizeof(int*));
+    // for(int i=0;i<m;i++){
+    //     map[i]=(int*)calloc(n,sizeof(int));
+    // }
+    // for(int j=0;j<opsSize;j++){
+    //     for(int m=0;m<ops[j][0];m++){
+    //         for(int n=0;n<ops[j][1];n++){
+    //             map[m][n]++;
+    //         }
+    //     }
+    // }
+    // int count=0;
+    // for(int i=0;i<m;i++){
+    //     for(int j=0;j<n;j++){
+    //         if(map[i][j]==map[0][0]){
+    //                  count++;
+    //         }
+    //     }
+    // }
+    // return count;
+
+}
