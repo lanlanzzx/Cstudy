@@ -1,0 +1,31 @@
+//相同方向的双指针
+int minSubArrayLen(int target, int* nums, int numsSize){
+    int ans=numsSize+1;
+    int left=-1;
+    int right=0;
+    int total=0;
+    for(int i=0;i<numsSize;i++){
+        total+=nums[i];
+    }
+    if(total<target)
+       return 0;
+    int sum=0;
+    for(left=-1;left<numsSize;left++){
+         if(left!=-1){
+             sum-=nums[left];
+         }
+         while(right<numsSize&&target>sum){
+             sum+=nums[right];
+             right++;
+         }
+         if(sum>=target){
+             int temp=right-left-1;
+              if(ans>temp)
+                 ans=temp;
+         }
+    }
+    if(ans>numsSize)
+        return 0;
+    return ans;
+
+}
