@@ -1,0 +1,39 @@
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+int** largeGroupPositions(char * s, int* returnSize, int** returnColumnSizes){
+    int s_len=strlen(s);
+    int **ans=(int **)malloc(sizeof(int*)*s_len);
+    *returnColumnSizes=(int **)malloc(sizeof(int*)*s_len);
+    int num=1;
+    int count=0;
+    for(int i=1;i<s_len;i++){
+        if(s[i]==s[i-1]){
+            num++;
+            if(s_len-1==i){
+                if(num>=3){
+                (*returnColumnSizes)[count]=2;
+                //*returnColumnSizes=(int *)malloc(sizeof(int)*2);//ans[count];
+                ans[count]=(int *)malloc(sizeof(int)*2);
+                ans[count][0]=s_len-num;
+                ans[count][1]=s_len-1;
+                 count++;}
+            }
+        }
+        else{
+            if(num>=3){
+                (*returnColumnSizes)[count]=2;
+                //*returnColumnSizes=(int *)malloc(sizeof(int)*2);//ans[count];
+                ans[count]=(int *)malloc(sizeof(int)*2);
+                ans[count][0]=i-num;
+                ans[count][1]=i-1;
+                 count++;}
+            num=1;
+                
+            }
+        }
+    *returnSize=count;
+    return ans;
+}
