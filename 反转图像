@@ -1,0 +1,28 @@
+/**
+ * Return an array of arrays of size *returnSize.
+ * The sizes of the arrays are returned as *returnColumnSizes array.
+ * Note: Both returned array and *columnSizes array must be malloced, assume caller calls free().
+ */
+ void change(int *nums,int size){
+     int i=0;
+     int j=size-1;
+     while(i<=j){
+         int temp;
+         temp=nums[i];
+         nums[i]=!nums[j];
+         nums[j]=!temp;
+         i++;
+         j--;
+     }
+
+ }
+int** flipAndInvertImage(int** image, int imageSize, int* imageColSize, int* returnSize, int** returnColumnSizes){
+    * returnSize=imageSize;
+    *returnColumnSizes=(int **)malloc(sizeof(int*)*imageSize);
+    //int **ans=(int**)malloc(sizeof(int*)*imageSize);
+    for(int i=0;i<imageSize;i++){
+         (*returnColumnSizes)[i]=*imageColSize;
+         change(image[i],*imageColSize);  
+    }
+    return image;
+}
