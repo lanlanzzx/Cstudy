@@ -1,0 +1,25 @@
+char * reverseVowels(char * s){
+    int * arr = (int *)malloc(sizeof(int)*strlen(s));
+    int i = 0;
+    int count = 0;
+    while (s[i]!='\0')
+    {
+        if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u'|| s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U')
+        {
+              arr[count++] = i;
+        }
+        i++;
+    }
+    int left = 0;
+    int right = count - 1;
+    while (left < right)
+    {
+        char temp;
+        temp = s[arr[left]];
+        s[arr[left]] = s[arr[right]];
+        s[arr[right]] = temp;
+        left++;
+        right--;
+    }
+    return s;
+}
