@@ -1,0 +1,31 @@
+int cnp(void *e1, void *e2)
+{
+    return *(int *)e1 - *(int *)e2;
+}
+bool isStraight(int* nums, int numsSize)
+{
+         qsort(nums, numsSize, sizeof(int), cnp);
+         int count = 0;
+         while (count < numsSize)
+         {
+             if (nums[count] != 0)
+             {
+                 break;
+             }
+             count++;
+         }
+         int temp = count;
+         while (temp < numsSize - 1)
+         {
+             if (nums[temp] == nums[temp+1])
+             {
+                 return false;
+             }
+             temp++;
+         }
+         if (nums[numsSize-1] -nums[count] <= 4)
+         {
+             return true;
+         }
+         return false;
+}
