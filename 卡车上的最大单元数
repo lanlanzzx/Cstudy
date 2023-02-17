@@ -1,0 +1,33 @@
+int comp(const void* pa,const void *pb){
+    // if(((int *)a)[1]>((int *)b)[1])
+    //    return -1;
+    // else if(((int *)a)[1]==((int *)b)[1]){
+    //     if(((int *)a)[0]>((int *)b)[0])
+    //          return -1;
+    // }
+    // return 1;
+    return (*(int **)pb)[1] - (*(int **)pa)[1];
+    //return ((int *)b)[1]-((int *)a)[1];
+}
+int maximumUnits(int** boxTypes, int boxTypesSize, int* boxTypesColSize, int truckSize){
+    qsort(boxTypes,boxTypesSize,sizeof(int*),comp);//按列升序排序
+    int count=0;
+    int sum=0;
+    int i=0;
+    while((i<boxTypesSize) && (count<=truckSize)){
+        if(count+boxTypes[i][0]<=truckSize){
+            sum+=boxTypes[i][0]*boxTypes[i][1];
+            count=count+boxTypes[i][0];
+        }
+        else{
+            if(count<truckSize){
+                sum+=(truckSize-count)*boxTypes[i][1];
+                count=truckSize;
+            }
+        }
+        i++;
+    }
+    return sum;
+    
+
+}
