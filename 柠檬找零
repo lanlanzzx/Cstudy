@@ -1,0 +1,37 @@
+bool lemonadeChange(int* bills, int billsSize){
+    if(bills[0]!=5){
+        return false;
+    }
+    int five_nums=1;
+    int ten_nums=0;
+    int twenty_nums=0;
+    for(int i=1;i<billsSize;i++){
+        if((bills[i]-5)==15){
+            twenty_nums+=1;
+            if(ten_nums>=1){
+                if(five_nums<1)
+                   return false;
+                ten_nums-=1;
+                five_nums-=1;
+            }
+            else{
+                if(five_nums<3){
+                   return false;
+                }
+                five_nums-=3;
+            }
+            
+        }
+        if((bills[i]-5)==5){
+            ten_nums+=1;
+            if (five_nums<1)
+                return false;
+            five_nums-=1;
+        }
+        if((bills[i]-5)==0){
+            five_nums+=1;
+        }
+
+    }
+    return true;
+}
