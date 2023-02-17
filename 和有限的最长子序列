@@ -1,0 +1,32 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int cnp(const void *a,const void *b){
+    return *(int *)a - *(int *)b;
+}
+int* answerQueries(int* nums, int numsSize, int* queries, int queriesSize, int* returnSize){
+  int * res = (int *)malloc(sizeof(int)*queriesSize);
+  * returnSize=queriesSize;
+  qsort(nums,numsSize,sizeof(int),cnp);
+  int count=0;
+  while(count<queriesSize){
+     int sum=0;
+     int i=0;
+     while(i<numsSize)
+     {
+         sum+=nums[i];
+         if(sum<=queries[count]){
+             i++;
+         }
+         else{
+             
+             break;
+         }
+
+     }
+     res[count]=i;
+     count++;
+
+  }
+  return res;
+  }
