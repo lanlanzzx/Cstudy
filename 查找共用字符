@@ -1,0 +1,55 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+char ** commonChars(char ** words, int wordsSize, int* returnSize){
+   int * hash = (int *)calloc(26,sizeof(int));
+   int j=0;
+   while(words[0][j]!='\0'){
+       hash[words[0][j]-'a']+=1;
+       j++;
+   }
+   for(int i=1;i<wordsSize;i++){
+       int ii=0;
+       int a[26]={0};
+       while(words[i][ii]!='\0'){
+           if(hash[words[i][ii]-'a']!=0){
+               hash[words[i][ii]-'a']+=1; 
+               a[words[i][ii]-'a']+=1;     
+           }
+           ii++;    
+       }
+       //printf("%d",a[0]);
+       for(int jj=0;jj<26;jj++){
+           if(a[jj])
+           {
+           if((hash[jj]-a[jj])/i-a[jj]>0){
+               hash[jj]=a[jj]*(i+1);
+           }
+           else{
+               hash[jj]=(hash[jj]-a[jj])/i*(i+1);
+           }
+           }
+           else{
+               hash[jj]=0;
+           }
+
+           
+       }
+   }
+   int count=0;
+   char  ** ans=(char *)malloc(sizeof(char*)*100);
+   for(int jjj=0;jjj<26;jjj++){
+             if(hash[jjj]!=0){
+                   int time=hash[jjj]/wordsSize;
+                   while(time){
+                       ans[count]=(char*)malloc(sizeof(char*));
+                       ans[count][0]=jjj+'a';
+                        ans[count][1]='\0';
+                        count++;
+                       time--;
+                   }
+             }
+   }
+   *returnSize=count;
+   return ans;
+}
