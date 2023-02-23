@@ -15,6 +15,7 @@ int* singleNumbers(int* nums, int numsSize, int* returnSize){
     }
     //printf("%d ",flag);
     //sum表示的是两个出现一次的数字的异或值。表示两个数字的相同和不同的地方
+    //sum中必然有1位为1 我们以这一位是否为1 划分不同的组合 必然可以将两个只出现了一次的数字 分为两组
     int one1=0;
     int one2=0;
     for(int i=0;i<numsSize;i++){
