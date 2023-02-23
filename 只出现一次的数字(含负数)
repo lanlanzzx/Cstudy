@@ -1,0 +1,33 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* singleNumber(int* nums, int numsSize, int* returnSize){
+int sum=0;
+    for(int i=0;i<numsSize;i++){
+        sum^=nums[i];
+    }
+    unsigned int flag=1;//因为需要考虑负数和正数的情况不一样 所以需要把它写成unsigned
+    while((sum & flag)==0)
+    {
+        flag=flag<<1;
+    }
+    //printf("%d ",flag);
+    //sum表示的是两个出现一次的数字的异或值。表示两个数字的相同和不同的地方
+    int one1=0;
+    int one2=0;
+    for(int i=0;i<numsSize;i++){
+        if((nums[i] & flag)!=0){
+            one1 ^=nums[i];
+           
+        }
+        else{
+            one2 ^=nums[i];
+             //printf("one2%d ",nums[i]);
+        }
+    }
+    int * ans = malloc(sizeof(int)*2);
+    ans[0]=one1;
+    ans[1]=one2;
+    *returnSize=2;
+    return ans;
+}
