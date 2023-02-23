@@ -1,0 +1,23 @@
+//需要考虑负数的情况
+int singleNumber(int* nums, int numsSize){
+        int m=0;
+    
+        int ans=0;
+        int flag=1;
+        while(m<=31){
+            int count=0;
+            for(int j=0;j<numsSize;j++){
+                count+=(nums[j])&flag;
+                nums[j]=(nums[j])>>1;
+            }
+            if(count%3!=0){
+                ans+=1u<<m;//算2的次方 //无符号的数和有符号的数 移位不同
+            }
+            m++;
+
+            
+        }
+       return ans;
+    
+
+}
