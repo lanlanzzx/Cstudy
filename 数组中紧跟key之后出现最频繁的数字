@@ -1,0 +1,22 @@
+int mostFrequent(int* nums, int numsSize, int key){
+ int * hash = (int *)calloc(1001,sizeof(int));
+ int i=0;
+ while((i+1)<numsSize)
+ {
+     if(nums[i] == key){
+         hash[nums[i+1]]+=1;
+     }
+     i=i+1;
+ }
+ int max=0;
+ int max_nums=0;
+ int j=1;
+ for(j=1;j<1001;j++){
+     if(hash[j]>max){
+         max=hash[j];
+         max_nums=j;
+     }
+ }
+ return max_nums;
+
+}
