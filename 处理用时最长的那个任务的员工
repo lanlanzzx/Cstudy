@@ -1,0 +1,23 @@
+int hardestWorker(int n, int** logs, int logsSize, int* logsColSize){
+    int * hash = (int *)calloc(n,sizeof(int));//hash表中的下标代表一个员工
+    hash[logs[0][0]]=logs[0][1];
+    for(int i=1;i<logsSize;i++)
+    {
+       int time = logs[i][1] - logs[i-1][1];
+       if(hash[logs[i][0]]<time){
+           hash[logs[i][0]]=time;
+       }
+    }
+    int max_time=0;
+    int max_id=0;
+    for(int j=0;j<n;j++){
+        if(hash[j]>max_time){
+             max_time=hash[j];
+             max_id=j;
+        }
+    }
+    * logsColSize=2;
+    return max_id;
+
+
+}
