@@ -1,0 +1,62 @@
+int minimizeXor(int num1, int num2){
+//使用c1来表示num1中1的个数
+//使用c2来表示num2中1的个数
+//x有c2个1 合理分配这c2个1 从高位去匹配1 如果还多了从低位加1
+// 如果c1的数目大于c2的数目 则说明只能把num1高位的c2个1变为0 剩下的低位c1-c2个1保持不变
+//则x的值是num1的高位c2个1 和低位c1-c2个1变成0 的结果
+// 如果c2的数目大于c1的数目 则说明能把num1所有的1变成0 并且从num1的低位0 开始增加c2-c1个1
+//则x的值是num1 加上c2-c1个低位0 变成1
+int c1 = 0;
+int c2 = 0;
+int flag1 = num1;
+int flag2 = num2;
+while(flag1){
+    c1 += 1 & flag1;
+    flag1 = flag1 >> 1;
+}
+while(flag2){
+    c2 += 1 & flag2;
+    flag2 = flag2 >> 1;
+}
+//printf("%d %d ",c1,c2);
+int x = num1;
+if(c1==c2)
+  return x;
+
+if (c1 > c2)//
+{
+    int tag1 =1;
+    int count1 = c1 - c2;
+    while(count1)
+    {
+       //printf("%d ",tag1);
+       if (num1 & tag1)
+       {
+           x=x- tag1;
+           
+           count1--;
+       }
+       tag1=tag1<<1;
+       
+       
+    }
+
+}
+if(c1<c2){
+    int tag2=1;
+    int count2=c2 - c1;
+    while(count2)
+    {
+       if (!(num1 & tag2))
+       {
+           x=x + tag2;
+           
+           count2--;
+       }
+       tag2=tag2<<1;
+    }
+
+}
+
+return x;
+}
