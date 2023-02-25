@@ -1,0 +1,20 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* separateDigits(int* nums, int numsSize, int* returnSize){
+    int * ans =(int *)malloc(sizeof(int)*10000000);
+    int count=0;
+    for(int i=0;i<numsSize;i++){
+        int wei=(int)log10(nums[i])+1;
+        int weii=wei;
+        while(nums[i]){
+             ans[count+wei-1]=nums[i]%10;
+             nums[i]=nums[i]/10;
+             wei--;
+        }
+        count=count+weii;
+
+    }
+    *returnSize=count;
+    return ans;
+}
