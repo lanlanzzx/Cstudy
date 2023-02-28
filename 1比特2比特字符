@@ -1,0 +1,24 @@
+bool isOneBitCharacter(int* bits, int bitsSize){
+    if(bitsSize==1){
+      return true;
+    }
+    if(bits[bitsSize-2]==0){
+        return true;
+    }
+    //遍历数组 如果遇到0 就表示的是走一步
+    //如果遇到1 就表示走的是2步  看看最后一步是不是bitssSize-1
+    int i=0;
+    for(i=0;i<bitsSize;){
+        if(bits[i]==0){
+            if(i==bitsSize-1){
+                break;
+            }
+            i++;
+        }
+        else{
+            i=i+2;
+        }
+    }
+    return i==bitsSize-1;
+
+}
