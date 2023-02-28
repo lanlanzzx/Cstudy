@@ -1,0 +1,30 @@
+int maxDistance(int* colors, int colorsSize){
+    //需要两栋房子的颜色不同 并且距离最远
+    //必然有一栋是在两头之中的一个
+    int max1=0;
+    int left=0;
+    int right =colorsSize-1;
+    while(left<right){
+        if(colors[left]!=colors[right]){
+            max1=right-left;
+            break;
+        }
+        else{
+            right--;
+        }
+    }
+    int max2=0;
+    int left1=0;
+    int right1 =colorsSize-1;
+    while(left1<right1){
+        if(colors[left1]!=colors[right1]){
+            max2=right1-left1;
+            break;
+        }
+        else{
+            left1++;
+        }
+    }
+    return max2>max1? max2:max1;
+
+}
