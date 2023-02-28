@@ -1,0 +1,46 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+void constuct_path(struct TreeNode* root, char ** paths,int* returnSize,int * sta,int top)
+{
+  if (root)
+  {
+      if (root->left == NULL && root->right == NULL )//这个点是叶子结点
+      {
+            char * tmp = (char *)malloc(1001);
+            int len = 0;
+            for(int i=0;i<top;i++)
+            {
+                len +=sprintf(tmp+len,"%d->",sta[i]);
+            }
+            //sprintf函数把格式化的数据写入某个字符串中 返回字符串的长度
+            sprintf(tmp+len,"%d",root->val);
+            paths[(*returnSize)++]=tmp;
+
+      }
+      else//这个节点不是叶子结点
+      {
+             sta[top++]=root->val;
+             constuct_path(root->left,paths,returnSize,sta,top);
+             constuct_path(root->right,paths,returnSize,sta,top);
+      }
+
+  }
+
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+char ** binaryTreePaths(struct TreeNode* root, int* returnSize){
+     char ** paths = (char **)malloc(sizeof(char *)*1001);
+     *returnSize=0;
+     int sta[1001];
+     constuct_path(root,paths,returnSize,sta,0);
+     return paths;
+}
