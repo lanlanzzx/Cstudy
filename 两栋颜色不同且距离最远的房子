@@ -1,6 +1,10 @@
 int maxDistance(int* colors, int colorsSize){
     //需要两栋房子的颜色不同 并且距离最远
-    //必然有一栋是在两头之中的一个
+    //必然有一栋是在两头之中的一个。。。可以证明的
+    //假设存在两个中间位置p1和p2 存放两种颜色a和b 是距离最远的不同颜色
+    // p1是a  p2是b  则右端right只能是a 否则最远的是right-p1  right>p2
+    //左端只能是b  否则最远的是p2-left left<p1
+    //此时左端是b 右端是a 不一样的颜色 则距离最远
     int max1=0;
     int left=0;
     int right =colorsSize-1;
