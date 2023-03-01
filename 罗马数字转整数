@@ -1,0 +1,30 @@
+int romanToInt(char * s){
+//如果左侧的字符所代表的数字小于右侧的数字 则左侧的数字就是被减去
+//反之 就是加上
+ int * hash = (int *)calloc(26,sizeof(int));
+ hash['I'-'A']=1;
+ hash['V'-'A']=5;
+ hash['X'-'A']=10;
+ hash['L'-'A']=50;
+ hash['C'-'A']=100;
+ hash['D'-'A']=500;
+ hash['M'-'A']=1000;
+ int sum=0;
+ while(*(s+1)!='\0')
+ {
+   if(hash[*s-'A']<hash[*(s+1)-'A'])
+   {
+       sum-=hash[*s-'A'];
+   }
+   else
+   {sum+=hash[*s-'A'];
+   }
+   if(*(s+1)=='\0'){
+       break;
+   }
+   s=s+1;
+   //printf("%d ",*s);
+ }
+ sum+=hash[*s-'A'];
+ return sum;
+}
