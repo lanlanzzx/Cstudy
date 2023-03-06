@@ -1,0 +1,78 @@
+int minimumDeletions(char * s){
+//最终有三种结果:  1、字符串全是a
+//               2、字符串全是bb
+//               3、字符串既有a又有b  a在左侧 b在右侧
+int len=strlen(s);
+int count_a=0;
+int count_b=0;
+for(int i=0;i<len;i++)
+{
+    if(s[i]=='a'){
+        count_a++;
+    }
+    else{
+        count_b++;
+    }
+}
+int right_a=count_a;
+int left_b=0;
+int ans=count_a;
+for(int j=0;j<len;j++)
+{
+  if(s[j]=='b')
+  {
+      left_b++;
+  }
+  else{
+      right_a--;
+  }
+  if(right_a+left_b<ans){
+      ans=right_a+left_b;
+  }
+
+}
+ return (ans<count_a)?(ans<count_b?ans:count_b):(count_a<count_b?count_a:count_b);
+// int left_b=0;
+// int right_b=len-1;
+// int left_a=0;
+// int right_a=0;
+// int flag_left=1;
+// int flag_left_a=1;
+// for(int i=0;i<len;i++)
+// {
+//       if(s[i]=='a'){
+//           if(flag_left_a){
+//               left_a=i;
+//               flag_left_a=0;
+//           }
+//           count_a++;
+//       }
+//       else{
+//           if(flag_left){
+//               left_b=i;
+//               flag_left=0;
+//           }
+//           count_b++;
+//       }
+// }
+// for(int j=len-1;j>=0;j--)
+// {
+//     if(s[j]=='b'){
+//         right_b=j;
+//         break;
+//     }
+// }
+// for(int j=len-1;j>=0;j--)
+// {
+//     if(s[j]=='a'){
+//         right_a=j;
+//         break;
+//     }
+// }
+
+// int ans_b=right_b-left_b+1-count_b;
+// int ans_a=left_a+right_a-left_a+1-count_a;
+// int ans=(count_a<count_b)?(count_a<ans_b?count_a:ans_b):(count_b<ans_b?count_b:ans_b);
+// return ans<ans_a?ans:ans_a;
+
+}
