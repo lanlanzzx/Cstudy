@@ -1,0 +1,64 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ int cnp(const void*e1,const void* e2)
+ {
+     return *(int *)e1 -*(int *)e2;
+ }
+int* findOriginalArray(int* changed, int changedSize, int* returnSize){
+        int * ans=(int *)malloc(sizeof(int)*changedSize);
+        if(changedSize%2!=0)
+        {
+            *returnSize=0;
+            return ans;
+        }
+        qsort(changed,changedSize,sizeof(int),cnp);
+        
+        int i=0;
+        int j=1;
+        int count=0;
+        //解决这个问题  使用了一个标记  标记某个元素是不是双倍数组元素
+        while(i<changedSize && j<changedSize)
+        {
+            if(changed[i]==-1){
+                i++;
+                continue;
+            }
+            if(changed[i]*2>changed[j])
+            {
+                j++;
+                // if(j==changedSize)
+                // {
+                //     *returnSize=0;
+                //     return ans;
+                // }
+            }
+            else if(changed[i]*2==changed[j])
+            {     if(i!=j)
+                  {
+                  ans[count++]=changed[i];
+                  changed[j]=-1;
+                  i++;
+                  j++;
+                  }
+                  else
+                  {
+                      j++;
+                  }
+                  
+            }
+            else
+            {
+                *returnSize=0;
+                return ans;
+            }
+            
+        }
+        if(count!=changedSize/2)
+        {
+            *returnSize=0;
+            return ans;
+        }
+        *returnSize=count;
+        return ans;
+}
