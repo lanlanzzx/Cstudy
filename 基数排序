@@ -21,7 +21,7 @@ void count_sort(int a[],int length,int exp)
     {
         buckets[i]+=buckets[i-1];
     }
-    for( int i=length-1; i>=0; i--)
+    for( int i=length-1; i>=0; i--)//因为基于前面的位数已经排好了 排在后面的是数字比较大的 所以应该给他比较大的下标 因为这是从小到大的排序
     //for(int i=0;i<length;i++)
     {
         output[buckets[(a[i]/exp)%10]-1]=a[i];
