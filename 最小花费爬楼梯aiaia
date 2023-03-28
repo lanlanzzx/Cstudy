@@ -1,0 +1,14 @@
+import sys
+a=int(input())
+b=input().split()
+dp=[0 for i in range(len(b)+1)]
+for i in range(2,len(b)+1):
+    dp[i]=min(int(b[i-1])+dp[i-1],int(b[i-2])+dp[i-2])
+# def ways1(index,b):
+#     if(index==0):#没上这个台阶
+#         return 0
+#     if(index==1):#没上这个台阶
+#         return 0
+#     #for i in range(2,len(b)+1):
+#     return min(int(b[index-1])+ways1(index-1,b),int(b[index-2])+ways1(index-2,b))
+print(dp[-1])
